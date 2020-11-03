@@ -1,0 +1,12 @@
+<h1>Visi Musu Postai</h1>
+<!-- Sukuriam cikla -->
+<% @post.each do |betKaipUzvadinasKintamasis| %>
+<div class="alert alert-light">
+<h3><%= betKaipUzvadinasKintamasis.title %></h3>
+<h3><%= betKaipUzvadinasKintamasis.body %></h3>
+<!-- Sukuriam Linka Kiekvienam musu Postui (post) tai yra ID-->
+<%= link_to "Skaityti toliau", post_path(betKaipUzvadinasKintamasis), :class => 'btn btn-outline-primary' %>
+</div>
+<% end %>
+
+

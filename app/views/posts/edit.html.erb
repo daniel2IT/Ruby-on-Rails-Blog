@@ -1,0 +1,34 @@
+<!--Copy/Paste new.html.erb-->
+<h2>Strapsnio Redagavimas</h2>
+<!-- form_for - Formos kurimui -->
+<!-- :post - uzmvadinom forma(vardaitis) -->
+<!-- url: posts_path - standartinis adresas kur vyks issaugojimas/addinimas musu postu-->
+<!--f - tai kintamas per kurias mes galesime atgauti duomenis is text_field(-o) kaip pvz. -->
+<!--post_path(@post) - url ir postas kuri perdirbsime @post-->
+<!--method: :patch - metodas uzpildo visus laukus is karto-->
+<%= form_for :post, url: post_path(@post), method: :patch do |f| %>
+
+<!--Jeigu musu objektas kuri mes perduodam turi koki nors errora -->
+<% if @post.errors.any? %>  
+<!-- Paimam Visus Errorus ciklu kurie atsirado -->
+  <% @post.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger"><%= msg %> </div>
+  <% end %>
+<% end %>
+
+  <p>
+    Vardaitis<br>
+    <!--text_field - lentelei sukurimas(vardu :title)  -->
+    <%= f.text_field(:title, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    Straipsnio tekstas<br>
+    <!--text_area - didesne formulytes pavidalu lauko ivedimo lentele (vardu :title)  -->
+    <%= f.text_area(:body, {:class => 'form-control'}) %>
+  </p>
+  <p>
+    <!--f.submit - mygtukas   -->
+    <%= f.submit({:class => 'btn btn-success'}) %>
+  </p>
+<!-- end - 'do' ciklas uzdarytas   -->
+<% end %>
