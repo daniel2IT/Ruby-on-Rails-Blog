@@ -9,4 +9,4 @@ Requirements DONE:
 - Project logically uses ActiveRecord Associations (Comments -> belongs_to :post)  ✅
 - Project logically uses ActiveRecord Validations (post.rb module -> validates :title, presence: true, length: {minimum:5} )  ✅
 - Project uses any front-end design (for example: W3CSS, Botstrap, Zurb Foundation and etc.)   ->> (  W3CSS, Botstrap ) ✅
-- Project must run successfully without any errors (Validation for Sign Up ✅)  (Delete Post, with Comments ✅) ->( In Progress )❌
+- Project must run successfully without any errors (Validation for Sign Up ✅)  (Delete Post, with Comments ✅) ->( Still In Progress )❌
