@@ -7,7 +7,9 @@
 
 <!--BootsrapCDN-->
     <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+   
+
   </head>
 
   <body>
@@ -18,12 +20,26 @@
   <!--_path tai suffix kuris sako kad tai linkas pvz home..-->
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <h5 class="my-0 mr-md-auto font-weight-bold">daniel2it</h5>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <span class="p-2 text-dark"><%= link_to "Pagrindinis Langas", home_path %></span>
-    <span class="p-2 text-dark"><%= link_to "Apie Mane", about_path %></span>
-    <span class="p-2 text-dark"><%= link_to "Kontaktai", contacts_path %></span>
+
+
+  <nav class="p-3 mb-2 bg-white text-dark">
+    
+    <span class="p-3 mb-2 bg-white text-dark" class="text-danger"><%= link_to "Pagrindinis Langas", home_path %></span>
+    <span class="p-3 mb-2 bg-white text-dark" class="text-danger"><%= link_to "Apie Mane", about_path %></span>
+    <span class="p-3 mb-2 bg-white text-dark" class="text-danger"><%= link_to "Kontaktai", contacts_path %></span>
+   <span class="p-3 mb-2 bg-white text-dark" class="text-danger"><%= link_to "Straipsnio Pridejimas", new_post_path %></span>
+      <span class="p-2 text-dark"></span>
+       <span class="p-2 text-dark"></span>
+        <span class="p-2 text-dark"></span>
+       <span class="p-2 text-dark"></span>
   </nav>
-  <span class="p-2 text-dark"><%= link_to "Straipsnio Pridejimas", new_post_path %></span>
+  
+    
+    <span class="p-3 mb-2 bg-warning text-dark" class="text-danger"><%= link_to "Registruotis", signup_path %></span>
+     <span class="p-2 text-dark"></span>
+      <span class="p-3 mb-2 bg-danger text-white " class="text-danger"><%= link_to "Prisijungti", login_path  %></span>
+      <span class="p-2 text-dark"></span>
+      <span class="p-3 mb-2 bg-white text-dark" class="text-danger"><%= link_to "Atsijungti", logout_path  %></span>
 </div>
 <!--Kad nebutu pristumtas grinai prie kaires, pdarom atstuma sukuriant div class="container"-->
     <div class="container">

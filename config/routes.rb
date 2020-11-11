@@ -18,6 +18,14 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
   #post 'messages'#create
   #/posts/1/comments (MATOM) kaip padaryti  
   #rake routes

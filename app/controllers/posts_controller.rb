@@ -15,7 +15,17 @@ class PostsController < ApplicationController
     #Puslapit kur galesime kurti(addinti) naujus postus
      #Get: posts/new
     def new
-        @post = Post.new
+
+        if current_user
+
+            @post = Post.new
+           else 
+
+            flash[:warning] = "You must be logged in to see this page"
+            redirect_to '/login'
+           end
+
+       
     end
 
     def show
@@ -29,9 +39,19 @@ class PostsController < ApplicationController
     end
 
     def edit
+
+        if current_user
+
+            @post = Post.find(params[:id])
+           else 
+
+            flash[:warning] = "You must be logged in to see this page"
+            redirect_to '/login'
+           end
+
         #Kai iskvieciapam imamas reikalingas mus straipsnis
        #SUkurus metoda sukuriamas taip pat Sablonas -> View
-        @post = Post.find(params[:id])
+
     end
 
     def update
@@ -48,10 +68,28 @@ class PostsController < ApplicationController
     end
 
     def destroy
-        @post = Post.find(params[:id])
 
-        @post.destroy
-        redirect_to posts_path
+        if current_user
+
+               
+            @post = Post.find(params[:id])
+       
+            @post.destroy
+    
+            redirect_to posts_path
+
+            
+           else 
+
+            flash[:warning] = "You must be logged in to see this page"
+            redirect_to '/login'
+           end
+
+        #Kai iskvieciapam imamas reikalingas mus straipsnis
+       #SUkurus metoda sukuriamas taip pat Sablonas -> View
+
+
+
     end
     
     # Metodas veiks po New vykdymo(Strapsnio sukurimo -- 'new')
