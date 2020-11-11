@@ -2,8 +2,8 @@
 
 Requirements DONE:
 
-Project must have practical value, like e-shop, blog, forum and etc. ( Blog ) ✅
-Database system is used (PostgreSQL)   ✅
+- Project must have practical value, like e-shop, blog, forum and etc. ( Blog ) ✅
+ - Database system is used (PostgreSQL)   ✅
 Users, registration/login - Guest (not logged in), simple user, user with administrator permissions; ( Authentication with bcrypt )  ✅
 Project must comply with RuboCop requirements ( In Process )  ❌
 Project logically uses ActiveRecord Associations (Comments -> belongs_to :post)  ✅
