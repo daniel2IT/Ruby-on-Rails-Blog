@@ -17,13 +17,12 @@ class PostsController < ApplicationController
     def new
 
         if current_user
-
             @post = Post.new
-           else 
+       else 
 
             flash[:warning] = "You must be logged in to see this page"
             redirect_to '/login'
-           end
+        end
 
        
     end
@@ -41,8 +40,15 @@ class PostsController < ApplicationController
     def edit
 
         if current_user
-
-            @post = Post.find(params[:id])
+            
+            if session[:name] == "admin"
+               
+                @post = Post.find(params[:id])
+                
+                else
+                    flash[:alert] = "You must be Admin to Do it"
+                    redirect_to '/posts'
+                end
            else 
 
             flash[:warning] = "You must be logged in to see this page"
@@ -70,20 +76,24 @@ class PostsController < ApplicationController
     def destroy
 
         if current_user
-
+            if session[:name] == "admin"
                
             @post = Post.find(params[:id])
        
             @post.destroy
     
             redirect_to posts_path
-
             
-           else 
+            else
+                flash[:alert] = "You must be Admin to Do it"
+                redirect_to '/posts'
+            end
+            
+        else 
 
             flash[:warning] = "You must be logged in to see this page"
             redirect_to '/login'
-           end
+        end
 
         #Kai iskvieciapam imamas reikalingas mus straipsnis
        #SUkurus metoda sukuriamas taip pat Sablonas -> View
@@ -117,19 +127,26 @@ class PostsController < ApplicationController
         # Post - modelis DB
         # .new(params[:post]) -- perduodam tuos parametrus, kurie atvyko is musu formos
         # perdavimas  @post = Post.new(params[:post]) yra klaidingas, nes reikalingas leistinas metodas, kokius duomenis mes perduosim, Tas metodas aprasytas apacioje
-        @post = Post.new(post_params)
+        
 
-        #Dabar reikia issaukoti ta post DB
-        #Validacija, jeigu mes galime issaugoti busu Posta
-        if(@post.save)
-        #Be to Useri mes pervedam i nauja Puslapi
-        #Tai is tiesu iskvies metoda Show(jis yra virs to metodo)
-        redirect_to @post
-        else
-            #Musu Puslapis tiesiog padarys Refresha
-            render 'new'
+        if session[:name] == "admin"
+               
+            @post = Post.new(post_params)
+
+                   #Dabar reikia issaukoti ta post DB
+                    #Validacija, jeigu mes galime issaugoti musu Posta
+                    if(@post.save)
+                        #Be to Useri mes pervedam i nauja Puslapi
+                        #Tai is tiesu iskvies metoda Show(jis yra virs to metodo)
+                        redirect_to @post
+                        else
+                            #Musu Puslapis tiesiog padarys Refresha
+                            render 'new'
+                        end
+            else
+                flash[:alert] = "You must be Admin to Do it"
+                redirect_to '/posts/new'
         end
-
     end
     
     #Sukuriamas Metodas Kuris nusako Kokie LAUKAI LEISTINI NAUDOJIMUI !!!!

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     end
  
       
-
+    
 
     if user.save
 
@@ -29,9 +29,11 @@ class UsersController < ApplicationController
                 flash[:success] = "Succesfully Created User !"
                 session[:user_id] = user.id 
                 redirect_to '/posts/new' 
-            else
+            
+            else   
                 flash[:warning] = "invalid Email"
                 redirect_to '/signup'
+    
         end
   
     else

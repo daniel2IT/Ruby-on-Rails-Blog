@@ -24,6 +24,13 @@
     <%= f.text_area(:body, {:class => 'form-control'}) %>
   </p>
   <p>
+
+  <% flash.each do |type, msg| %>
+  <div class="alert alert-info">
+    <%= msg %>
+  </div>
+<% end %>
+
     <!--f.submit - mygtukas   -->
     <%= f.submit({:class => 'btn btn-success'}) %>
   </p>
