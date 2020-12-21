@@ -3,6 +3,11 @@ class UsersController < ApplicationController
     def new
     end
     
+
+
+    REGEX_PATTERN = /^(.+)@(.+)$/ 
+
+     
     def create
     user = User.new(
         name: params[:name],
@@ -11,14 +16,29 @@ class UsersController < ApplicationController
         password_confirmation: params[:password_confirmation]
     )
 
-    if user.save
-        session[:user_id] = user.id
-        flash[:success] = "Succesfully Created User !"
+    def is_email_valid?(email)
+        email =~REGEX_PATTERN
+    end
+ 
+      
 
-        redirect_to '/posts/new'
+
+    if user.save
+
+        if is_email_valid?(params[:email])
+                flash[:success] = "Succesfully Created User !"
+                session[:user_id] = user.id 
+                redirect_to '/posts/new' 
+            else
+                flash[:warning] = "invalid Email"
+                redirect_to '/signup'
+        end
+  
     else
         flash[:warning] = "invalid Email or Password"
         redirect_to '/signup'
     end  
-  end
+
+
+end
 end
